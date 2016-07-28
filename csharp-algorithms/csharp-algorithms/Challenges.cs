@@ -40,6 +40,22 @@ namespace csharp_algorithms
 
             for (int i = 0; i < children.Count / 2; i++)
             {
+                var indexMirror = children.Count - 1 - i;
+                if (children[i] == null && children[indexMirror] != null)
+                {
+                    return false;
+                }
+
+                if (children[i] != null && children[indexMirror] == null)
+                {
+                    return false;
+                }
+
+                if (children[i] == null && children[indexMirror] == null)
+                {
+                    continue;
+                }
+
                 if (children[i].Data != children[children.Count - 1 - i].Data)
                 {
                     return false;
