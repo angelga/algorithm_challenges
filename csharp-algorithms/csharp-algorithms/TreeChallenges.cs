@@ -10,7 +10,7 @@ namespace csharp_algorithms
     /// <summary>
     /// Collection of solutions to coding challenges and interview questions.
     /// </summary>
-    public class Challenges
+    public class TreeChallenges
     {
         /// <summary>
         /// Given a binary tree, determine if tree is mirrored.
@@ -115,6 +115,65 @@ namespace csharp_algorithms
             }
 
             return string.Join(", ", result);
+        }
+
+        /// <summary>
+        /// Given a binary tree, modify the tree such that each node's right child points
+        /// to the next node in horizontal traversal, such that all left nodes are empty.
+        /// For example this tree:
+        ///     8
+        ///   1   2
+        ///  2 3 4 5
+        ///  
+        /// Would look like:
+        ///     8
+        ///      1
+        ///       2
+        ///        2
+        ///         3
+        ///          4
+        ///           5
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public static Node TraverseAndLinkTreeHorizontally(Node root)
+        {
+            if (root == null)
+            {
+                return root;
+            }
+
+            Node tail = root;
+            Queue<Node> nodes = new Queue<Node>();
+            if (tail.Left != null)
+            {
+                nodes.Enqueue(tail.Left);
+            }
+
+            if (tail.Right != null)
+            {
+                nodes.Enqueue(tail.Right);
+            }
+
+            while (nodes.Count > 0)
+            {
+                tail.Left = null;
+                tail.Right = nodes.Dequeue();
+                tail = tail.Right;
+
+                if (tail.Left != null)
+                {
+                    nodes.Enqueue(tail.Left);
+
+                }
+                
+                if (tail.Right != null)
+                {
+                    nodes.Enqueue(tail.Right);
+                }
+            }
+
+            return root;
         }
     }
 }

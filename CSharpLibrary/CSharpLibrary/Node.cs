@@ -33,10 +33,7 @@ namespace CSharpLibrary
             }
             set
             {
-                if (value != null)
-                {
-                    this.left = value;
-                }
+                this.left = value;
             }
         }
 
@@ -48,10 +45,7 @@ namespace CSharpLibrary
             }
             set
             {
-                if (value != null)
-                {
-                    this.right = value;
-                }
+                this.right = value;
             }
         }
     }

@@ -36,7 +36,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharpLibrary">
+    <Reference Include="CSharpLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\CSharpLibrary\CSharpLibrary\bin\Debug\CSharpLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -54,7 +55,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ChallengesTests.cs" />
+    <Compile Include="TreeChallengesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
