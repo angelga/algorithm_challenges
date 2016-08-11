@@ -227,9 +227,9 @@ namespace csharp_algorithms.Tests
             bool correct = true;
             for (int i = 0; i < expectedData.Length; i++)
             {
-                correct = correct && 
-                    result != null && 
-                    result.Data == expectedData[i] && 
+                correct = correct &&
+                    result != null &&
+                    result.Data == expectedData[i] &&
                     result.Left == null;
                 result = result.Right;
             }
@@ -253,9 +253,9 @@ namespace csharp_algorithms.Tests
             bool correct = true;
             for (int i = 0; i < expectedData.Length; i++)
             {
-                correct = correct && 
-                    result != null && 
-                    result.Data == expectedData[i] && 
+                correct = correct &&
+                    result != null &&
+                    result.Data == expectedData[i] &&
                     result.Left == null;
                 result = result.Right;
             }
@@ -273,6 +273,7 @@ namespace csharp_algorithms.Tests
             root.Left.Right = new Node(8);
             root.Right.Left = new Node(9);
 
+            // Traverse tree
             List<int> result = new List<int>();
             foreach (var node in TreeChallenges.TraverseZigzag(root))
             {
@@ -280,6 +281,86 @@ namespace csharp_algorithms.Tests
             }
 
             Assert.AreEqual("5, 6, 7, 8, 9", string.Join(", ", result));
+        }
+
+        [TestMethod()]
+        public void BSTTraverseInOrder()
+        {
+            // Setup test tree
+            Node root = new Node(5);
+            root.Left = new Node(4);
+            root.Right = new Node(6);
+            root.Left.Left = new Node(3);
+
+            List<int> result = new List<int>();
+            foreach (var node in TreeChallenges.TraverseInOrderBST(root))
+            {
+                result.Add(node.Data);
+            }
+
+            Assert.AreEqual("3, 4, 5, 6", string.Join(", ", result));
+        }
+
+        [TestMethod()]
+        public void BSTFindNthSmallest()
+        {
+            Node root = new Node(5);
+            Assert.AreEqual(5, TreeChallenges.FindNthSmallest(root, 1).Data);
+        }
+
+        [TestMethod()]
+        public void BSTFindNthSmallest_SmallerNth()
+        {
+            Node root = new Node(5);
+            Assert.IsNull(TreeChallenges.FindNthSmallest(root, 0));
+        }
+
+        [TestMethod()]
+        public void BSTFindNthSmallest_BiggerNth()
+        {
+            Node root = new Node(5);
+            Assert.IsNull(TreeChallenges.FindNthSmallest(root, 2));
+        }
+
+        [TestMethod()]
+        public void BSTFindSmallestWRef()
+        {
+            Node root = new Node(5);
+            int nth = 1;
+            Assert.AreEqual(5, TreeChallenges.FindNthSmallestWRef(root, ref nth).Data);
+        }
+
+        [TestMethod()]
+        public void BSTFindSmallestWRef_1Level()
+        {
+            Node root = new Node(5);
+            root.Left = new Node(3);
+            root.Left.Right = new Node(4);
+
+            int nth = 2;
+            Assert.AreEqual(4, TreeChallenges.FindNthSmallestWRef(root, ref nth).Data);
+        }
+
+        [TestMethod()]
+        public void FindNodeInTree()
+        {
+            Node root = new Node(5);
+            root.Left = new Node(3);
+            root.Left.Right = new Node(4);
+
+            Assert.AreEqual(4, TreeChallenges.FindNodeInBST(root, 4).Data);
+        }
+
+        [TestMethod()]
+        public void FindNodeInTreeNull()
+        {
+            Assert.IsNull(TreeChallenges.FindNodeInBST(null, 1));
+        }
+
+        [TestMethod()]
+        public void FindNodeInTreeNullResult()
+        {
+            Assert.IsNull(TreeChallenges.FindNodeInBST(new Node(5), 1));
         }
     }
 }

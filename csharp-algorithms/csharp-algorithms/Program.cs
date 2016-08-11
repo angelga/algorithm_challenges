@@ -10,11 +10,7 @@ namespace csharp_algorithms
     {
         static void Main(string[] args)
         {
-            CSharpLibrary.Node node = new CSharpLibrary.Node(5);
-
-            node.Left = new CSharpLibrary.Node(4);
-            node.Right = new CSharpLibrary.Node(6);
-            Console.WriteLine(node);
+            Console.WriteLine("Use MSTest.exe /testcontainer:csharp-algorithmtests.dll or Visual Studio to run tests in csharp-algorithmstests project.");
             Console.ReadKey();
         }
     }

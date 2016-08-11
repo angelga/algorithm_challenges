@@ -232,5 +232,114 @@ namespace csharp_algorithms
                 leftToRight = !leftToRight;
             }
         }
+
+        /// <summary>
+        /// Given a binary search tree, perform in order traversal. 
+        /// That is, left leaf nodes, root, finally right leaf nodes.
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public static IEnumerable<Node> TraverseInOrderBST(Node root)
+        {
+            if (root == null)
+            {
+                yield break;
+            }
+
+            foreach (var node in TraverseInOrderBST(root.Left))
+            {
+                yield return node;
+            }
+
+            yield return root;
+            foreach (var node in TraverseInOrderBST(root.Right))
+            {
+                yield return node;
+            }
+        }
+
+        /// <summary>
+        /// Given a binary search tree, find the nth smallest item.
+        /// Return null if not found (there are less items in the tree than nth provided,
+        /// or nth is not positive).
+        /// It is assumed root is a BST.
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="nth"></param>
+        /// <returns></returns>
+        public static Node FindNthSmallest(Node root, int nth)
+        {
+            if (nth < 1)
+            {
+                return null;
+            }
+
+            var count = 0;
+            foreach (var node in TraverseInOrderBST(root))
+            {
+                count++;
+                if (count == nth)
+                {
+                    return node;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Given a binary search tree, find the nth smallest item.
+        /// root is assumed to be a binary search tree.
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="nth"></param>
+        /// <returns></returns>
+        public static Node FindNthSmallestWRef(Node root, ref int nth)
+        {
+            if (root == null || nth <= 0)
+            {
+                return null;
+            }
+
+            Node node = FindNthSmallestWRef(root.Left, ref nth);
+            if (node != null)
+            {
+                return node;
+            }
+
+            if (--nth == 0)
+            {
+                return root;
+            }
+
+            return FindNthSmallestWRef(root.Right, ref nth);
+        }
+
+        /// <summary>
+        /// Given a binary (not search) tree, find the node having value.
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static Node FindNodeInBST(Node root, int value)
+        {
+            if (root == null)
+            {
+                return null;
+            }
+
+            if (root.Data == value)
+            {
+                return root;
+            }
+
+            Node node = FindNodeInBST(root.Left, value);
+            if (node != null)
+            {
+                return node;
+            }
+
+            return FindNodeInBST(root.Right, value);
+        }
     }
 }
