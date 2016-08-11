@@ -341,5 +341,46 @@ namespace csharp_algorithms
 
             return FindNodeInBST(root.Right, value);
         }
+
+        /// <summary>
+        /// Given a binary search tree, insert node.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="bst"></param>
+        public static void InsertNodeToBST(Node node, Node bst)
+        {
+            if (node == null || bst == null)
+            {
+                return;
+            }
+
+            if (node.Data == bst.Data)
+            {
+                throw new ArgumentException("Duplicate value found in binary search tree.");
+            }
+
+            if (bst.Data > node.Data)
+            {
+                if (bst.Left == null)
+                {
+                    bst.Left = node;
+                }
+                else
+                {
+                    InsertNodeToBST(node, bst.Left);
+                }
+            }
+            else
+            {
+                if (bst.Right == null)
+                {
+                    bst.Right = node;
+                }
+                else
+                {
+                    InsertNodeToBST(node, bst.Right);
+                }
+            }
+        }
     }
 }

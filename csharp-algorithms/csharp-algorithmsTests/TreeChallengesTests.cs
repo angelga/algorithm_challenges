@@ -362,5 +362,34 @@ namespace csharp_algorithms.Tests
         {
             Assert.IsNull(TreeChallenges.FindNodeInBST(new Node(5), 1));
         }
+
+        [TestMethod()]
+        public void InsertNodetoBST()
+        {
+            Node root = new Node(5);
+            TreeChallenges.InsertNodeToBST(new Node(3), root);
+            List<int> result = new List<int>();
+            foreach (var node in TreeChallenges.TraverseInOrderBST(root))
+            {
+                result.Add(node.Data);
+            }
+
+            Assert.AreEqual("3, 5", string.Join(", ", result));
+        }
+
+        [TestMethod()]
+        public void InsertNodetoBST2()
+        {
+            Node root = new Node(5);
+            TreeChallenges.InsertNodeToBST(new Node(6), root);
+            TreeChallenges.InsertNodeToBST(new Node(10), root);
+            List<int> result = new List<int>();
+            foreach (var node in TreeChallenges.TraverseInOrderBST(root))
+            {
+                result.Add(node.Data);
+            }
+
+            Assert.AreEqual("5, 6, 10", string.Join(", ", result));
+        }
     }
 }
