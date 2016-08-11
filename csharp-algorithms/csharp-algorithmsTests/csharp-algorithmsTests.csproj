@@ -36,10 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSharpLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\CSharpLibrary\CSharpLibrary\bin\Debug\CSharpLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -62,6 +58,10 @@
     <ProjectReference Include="..\csharp-algorithms\csharp-algorithms.csproj">
       <Project>{39A213CE-9AA8-49FA-8B2A-6CC41949F396}</Project>
       <Name>csharp-algorithms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\csharp-library\CSharpLibrary.csproj">
+      <Project>{b97d6d09-2e3d-4913-aa30-d5f2d679472e}</Project>
+      <Name>CSharpLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
