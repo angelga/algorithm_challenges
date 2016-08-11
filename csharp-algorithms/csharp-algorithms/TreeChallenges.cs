@@ -175,5 +175,62 @@ namespace csharp_algorithms
 
             return root;
         }
+
+        /// <summary>
+        /// Helper method adds node to stack if node not empty
+        /// </summary>
+        /// <param name="stack"></param>
+        /// <param name="node"></param>
+        private static void PushIfNotNull(Stack<Node> stack, Node node)
+        {
+            if (node != null)
+            {
+                stack.Push(node);
+            }
+        }
+
+        /// <summary>
+        /// Given a binary tree, return the string representation of comma separated leaf contents
+        /// in zigzag order.
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public static IEnumerable<Node> TraverseZigzag(Node root)
+        {
+            if (root == null)
+            {
+                yield break;
+            }
+
+            var workingStack = new Stack<Node>();
+            var storageStack = new Stack<Node>();
+            workingStack.Push(root);
+            
+            bool leftToRight = true;
+
+            while (workingStack.Count > 0)
+            {
+                while (workingStack.Count > 0)
+                {
+                    Node head = workingStack.Pop();
+                    yield return head;
+                    if (leftToRight)
+                    {
+                        PushIfNotNull(storageStack, head.Left);
+                        PushIfNotNull(storageStack, head.Right);
+                    }
+                    else
+                    {
+                        PushIfNotNull(storageStack, head.Right);
+                        PushIfNotNull(storageStack, head.Left);
+                    }
+                }
+
+                var temp = workingStack;
+                workingStack = storageStack;
+                storageStack = temp;
+                leftToRight = !leftToRight;
+            }
+        }
     }
 }

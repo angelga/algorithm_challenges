@@ -262,5 +262,24 @@ namespace csharp_algorithms.Tests
 
             Assert.IsTrue(correct);
         }
+
+        [TestMethod()]
+        public void TreeZigzag()
+        {
+            // Setup test tree
+            Node root = new Node(5);
+            root.Left = new Node(7);
+            root.Right = new Node(6);
+            root.Left.Right = new Node(8);
+            root.Right.Left = new Node(9);
+
+            List<int> result = new List<int>();
+            foreach (var node in TreeChallenges.TraverseZigzag(root))
+            {
+                result.Add(node.Data);
+            }
+
+            Assert.AreEqual("5, 6, 7, 8, 9", string.Join(", ", result));
+        }
     }
 }
